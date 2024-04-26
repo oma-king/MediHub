@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.util.Date;
 @Entity
+@Table(name= "Appointments")
 @Setter
 @Getter
 @NoArgsConstructor
@@ -12,27 +13,28 @@ import java.util.Date;
 @ToString
 public class Appointment {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long appointmentId;
 
-    private Date consultationDate;
     private Date appointmentDate;
+    private String appointmentTime;
     private String description;
     private String symptoms;
+    private Integer priority;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "patientId")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "patient_id")
     private Patient patient;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "doctorId")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "doctor_id")
     private Doctor doctor;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "nurseId")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "nurse_id")
     private Nurse nurse;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "medicalFileId")
+    @JoinColumn(name = "medical_file_id")
     private MedicalFile medicalFile;
 }

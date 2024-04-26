@@ -9,26 +9,32 @@
     <h1>Bienvenue sur MediHub</h1>
     <p>Ceci est une application de gestion de cabinet médical.</p>
 
-    <!--<div th:if="${message}">
-        <p th:text="'Message: ' + ${message}"></p>
-    </div>-->
-
-    <!-- Formulaire de recherche de patient -->
-    <!--  <form action="#" th:action="@{/patients}" method="get">
-          <label for="searchInput">Rechercher un patient :</label>
-          <input type="text" id="searchInput" name="keyword" placeholder="Nom du patient...">
-          <button type="submit">Rechercher</button>
-      </form>-->
-
-    <!-- Liste de patients -->
-    <!-- <div th:if="${patients}">
-         <h2>Liste des patients :</h2>
-         <ul>
-             <li th:each="patient : ${patients}">
-                 <span th:text="${patient.firstName + ' ' + patient.lastName}"></span>
-             </li>
-         </ul>
-     </div>-->
+    <h1>Patients List</h1>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Birth Date</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>Social Security Type</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Iterate over the list of patients and display patient details -->
+        <tr th:each="patient : ${patients}">
+            <td th:text="${patient.id}"></td>
+            <td th:text="${patient.firstName} + ' ' + ${patient.lastName}"></td>
+            <td th:text="${patient.email}"></td>
+            <td th:text="${patient.birthDate}"></td>
+            <td th:text="${patient.address}"></td>
+            <td th:text="${patient.city}"></td>
+            <td th:text="${patient.socialSecurityType}"></td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 </body>
 </html>

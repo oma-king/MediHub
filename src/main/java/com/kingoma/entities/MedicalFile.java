@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @Entity
+@Table(name= "Medical_Files")
 @Setter
 @Getter
 @NoArgsConstructor
@@ -18,7 +19,7 @@ public class MedicalFile {
     private String medicalFileId;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "patientId")
+    @JoinColumn(name = "patient_id")
     private Patient patient;
 
     @OneToMany (mappedBy = "medicalFile", cascade = CascadeType.ALL)

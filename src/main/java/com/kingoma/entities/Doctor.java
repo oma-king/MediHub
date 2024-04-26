@@ -5,6 +5,7 @@ import lombok.*;
 
 @Entity
 @Table(name= "Doctors")
+@PrimaryKeyJoinColumn(name = "doctor_id")
 @Setter
 @Getter
 @NoArgsConstructor

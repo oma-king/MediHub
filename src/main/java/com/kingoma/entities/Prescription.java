@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.util.Date;
 @Entity
+@Table(name= "Prescriptions")
 @Setter
 @Getter
 @NoArgsConstructor
@@ -18,5 +19,9 @@ public class Prescription {
     private String title;
     private Date prescriptionDate;
     private String description;
-    private String drugList;
+    private String itemList;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "consultation_id")
+    private Consultation consultation;
 }

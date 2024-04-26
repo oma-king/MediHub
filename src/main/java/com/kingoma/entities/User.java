@@ -10,6 +10,7 @@ import javax.validation.constraints.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Inheritance(strategy = InheritanceType.JOINED)
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,4 +28,10 @@ public class User {
     private String email;
     private String password;
     private String accountType;
+
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
 }

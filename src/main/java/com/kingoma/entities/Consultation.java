@@ -3,8 +3,12 @@ package com.kingoma.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 @Entity
+@Table(name= "Consultations")
 @Setter
 @Getter
 @NoArgsConstructor
@@ -17,21 +21,21 @@ public class Consultation {
 
     private String reason;
     private Date consulationDate;
+    private String consultationTime;
     private double price;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "prescriptionId")
-    private Prescription prescription;
+    @OneToMany(mappedBy = "consultation", cascade = CascadeType.ALL)
+    private List<Prescription> prescriptionList = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "patientId")
+    @JoinColumn(name = "patient_id")
     private Patient patient;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "doctorId")
+    @JoinColumn(name = "doctor_id")
     private Doctor doctor;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "medicalFileId")
+    @JoinColumn(name = "medical_file_id")
     private MedicalFile medicalFile;
 }
