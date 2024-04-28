@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Nurse Form</title>
+</head>
+<body>
+<h2>Add Nurse Form</h2>
+<form id="addNurseForm">
+    <label for="idCard">ID Card:</label>
+    <input type="text" id="idCard" name="idCard" required><br><br>
+
+    <label for="gender">Gender:</label>
+    <input type="text" id="gender" name="gender" required><br><br>
+
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" name="lastName" required><br><br>
+
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" name="firstName" required><br><br>
+
+    <label for="phone1">Phone 1:</label>
+    <input type="text" id="phone1" name="phone1" required><br><br>
+
+    <label for="phone2">Phone 2:</label>
+    <input type="text" id="phone2" name="phone2"><br><br>
+
+    <label for="email">Email:</label>
+    <input type="text" id="email" name="email" required><br><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required><br><br>
+
+    <label for="accountType" hidden="hidden">Account Type:</label>
+    <input type="text" id="accountType" name="accountType" value="Nurse" hidden="hidden"><br><br>
+
+    <label for="shift">Shift:</label>
+    <input type="text" id="shift" name="shift" required><br><br>
+
+    <button type="submit">Add Nurse</button>
+</form>
+
+<script>
+    document.getElementById("addNurseForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        // Construct the request body from form data
+        const formData = {
+            idCard: document.getElementById("idCard").value,
+            gender: document.getElementById("gender").value,
+            lastName: document.getElementById("lastName").value,
+            firstName: document.getElementById("firstName").value,
+            phone1: document.getElementById("phone1").value,
+            phone2: document.getElementById("phone2").value,
+            email: document.getElementById("email").value,
+            password: document.getElementById("password").value,
+            accountType: document.getElementById("accountType").value,
+            shift: document.getElementById("shift").value
+        };
+
+        // Make an AJAX request to add the Nurse
+        fetch('/addNurse', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+            .then(response => {
+                if (response.ok) {
+                    // Nurse added successfully
+                    alert("Nurse added successfully!");
+                    // You can redirect to another page or perform any other action here
+                } else {
+                    // Error occurred while adding the Nurse
+                    return response.json().then(error => {
+                        throw new Error(error.message);
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to add Nurse: ' + error.message);
+            });
+    });
+</script>
+</body>
+</html>

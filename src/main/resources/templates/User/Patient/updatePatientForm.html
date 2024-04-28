@@ -73,7 +73,7 @@
                     type: 'DELETE',
                     success: function(response) {
                         alert(response); // Display success message
-                        // Redirect to another page or perform any other action
+                        window.location.href = '/patients'; // Redirect to the homepage or any other appropriate page
                     },
                     error: function(xhr, status, error) {
                         alert("Error deleting user: " + error); // Display error message
@@ -166,6 +166,7 @@
             .then(message => {
                 alert(message); // Show success message
                 // Optionally redirect or perform other actions after updating patient
+                window.location.href = '/patients'; // Redirect to the homepage or any other appropriate page
             })
             .catch(error => {
                 console.error('Error:', error);

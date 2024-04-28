@@ -12,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Optional;
 
@@ -30,11 +29,11 @@ public class PatientController {
         this.userRepository = userRepository;
     }
 
-    @GetMapping("/")
+    @GetMapping("/patients")
     public String showIndexPage(Model model) {
         // Get all patients directly from the repository
         model.addAttribute("patients", patientRepository.findAll());
-        return "index";
+        return "User/Patient/patientIndex";
     }
     @GetMapping("/getPatientById/{id}")
     public ResponseEntity<Patient> getPatientById(@PathVariable Long id) {

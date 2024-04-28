@@ -25,6 +25,7 @@
             <th>Address</th>
             <th>City</th>
             <th>Social Security Type</th>
+            <th>Action</th>
 
         </tr>
         </thead>
@@ -43,6 +44,10 @@
             <td th:text="${patient.address}"></td>
             <td th:text="${patient.city}"></td>
             <td th:text="${patient.socialSecurityType}"></td>
+            <td>
+                <a th:href="@{'/getPatientById/' + ${patient.id}}">View</a> |
+                <a th:href="@{'/updatePatientForm?id=' + ${patient.id}}">Update</a>
+            </td>
         </tr>
         </tbody>
     </table>

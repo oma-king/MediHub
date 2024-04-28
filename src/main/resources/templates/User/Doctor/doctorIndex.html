@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Doctors Index</title>
+</head>
+<body>
+<h1>Doctors List</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone 1</th>
+        <th>Speciality</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Iterate over the list of doctors and display doctor details -->
+    <tr th:each="doctor : ${doctors}">
+        <td th:text="${doctor.id}"></td>
+        <td th:text="${doctor.firstName + ' ' + doctor.lastName}"></td>
+        <td th:text="${doctor.email}"></td>
+        <td th:text="${doctor.phone1}"></td>
+        <td th:text="${doctor.speciality}"></td>
+        <td>
+            <a th:href="@{'/getDoctorById/' + ${doctor.id}}">View</a> |
+            <a th:href="@{'/updateDoctorForm?id=' + ${doctor.id}}">Update</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
