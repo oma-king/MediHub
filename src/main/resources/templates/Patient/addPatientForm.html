@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Patient Form</title>
+</head>
+<body>
+<h2>Add Patient Form</h2>
+<form id="addPatientForm">
+    <label for="email">Email:</label>
+    <input type="text" id="email" name="email" required><br><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required><br><br>
+
+    <label for="socialSecurityType">Social Security Type:</label>
+    <input type="text" id="socialSecurityType" name="socialSecurityType" required><br><br>
+
+    <label for="birthDate">Birthdate:</label>
+    <input type="date" id="birthDate" name="birthDate" required><br><br>
+
+    <label for="address">Address:</label>
+    <input type="text" id="address" name="address" required><br><br>
+
+    <label for="city">City:</label>
+    <input type="text" id="city" name="city" required><br><br>
+
+    <label for="idCard">ID Card:</label>
+    <input type="text" id="idCard" name="idCard" required><br><br>
+
+    <label for="gender">Gender:</label>
+    <input type="text" id="gender" name="gender" required><br><br>
+
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" name="lastName" required><br><br>
+
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" name="firstName" required><br><br>
+
+    <label for="phone1">Phone 1:</label>
+    <input type="text" id="phone1" name="phone1" required><br><br>
+
+    <label for="phone2">Phone 2:</label>
+    <input type="text" id="phone2" name="phone2"><br><br>
+
+    <label for="accountType" hidden="hidden">Account Type:</label>
+    <input type="text" id="accountType" name="accountType" value="Patient" hidden="hidden"><br><br>
+
+    <button type="submit">Add Patient</button>
+</form>
+
+<script>
+    document.getElementById("addPatientForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        // Collect form data
+        var formData = {
+            idCard: document.getElementById("idCard").value,
+            gender: document.getElementById("gender").value,
+            lastName: document.getElementById("lastName").value,
+            firstName: document.getElementById("firstName").value,
+            phone1: document.getElementById("phone1").value,
+            phone2: document.getElementById("phone2").value,
+            email: document.getElementById("email").value,
+            password: document.getElementById("password").value,
+            accountType: document.getElementById("accountType").value,
+            birthDate: document.getElementById("birthDate").value,
+            address: document.getElementById("address").value,
+            city: document.getElementById("city").value,
+            socialSecurityType: document.getElementById("socialSecurityType").value
+        };
+
+        // Send data to backend via AJAX
+        fetch('/addPatient', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+            .then(response => response.text())
+            .then(message => {
+                alert(message); // Show success message
+                // Optionally redirect or perform other actions after adding patient
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to add patient');
+            });
+    });
+</script>
+</body>
+</html>

@@ -1,5 +1,6 @@
 package com.kingoma.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,6 +19,7 @@ public class MedicalFile {
     @Id
     private String medicalFileId;
 
+    @JsonBackReference
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "patient_id")
     private Patient patient;
@@ -27,4 +29,5 @@ public class MedicalFile {
 
     @OneToMany(mappedBy = "medicalFile", cascade = CascadeType.ALL)
     private List<Consultation> consultationList = new ArrayList<>();
+
 }

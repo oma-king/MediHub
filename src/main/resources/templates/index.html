@@ -14,20 +14,31 @@
         <thead>
         <tr>
             <th>ID</th>
+            <th>Medical File ID</th>
+            <th>Username</th>
+            <th>Gender</th>
             <th>Name</th>
             <th>Email</th>
+            <th>Phone 1</th>
+            <th>Phone 2</th>
             <th>Birth Date</th>
             <th>Address</th>
             <th>City</th>
             <th>Social Security Type</th>
+
         </tr>
         </thead>
         <tbody>
         <!-- Iterate over the list of patients and display patient details -->
         <tr th:each="patient : ${patients}">
             <td th:text="${patient.id}"></td>
+            <td th:text="${patient.medicalFile.medicalFileId}"></td>
+            <td th:text="${patient.username}"></td>
+            <td th:text="${patient.gender}"></td>
             <td th:text="${patient.firstName} + ' ' + ${patient.lastName}"></td>
             <td th:text="${patient.email}"></td>
+            <td th:text="${patient.phone1}"></td>
+            <td th:text="${patient.phone2}"></td>
             <td th:text="${patient.birthDate}"></td>
             <td th:text="${patient.address}"></td>
             <td th:text="${patient.city}"></td>

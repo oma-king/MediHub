@@ -1,49 +1,27 @@
 package com.kingoma.dtos;
 
+import com.kingoma.entities.MedicalFile;
+import lombok.*;
+
 import java.util.Date;
 
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class PatientFormData {
+    private String idCard;
+    private String gender;
+    private String lastName;
+    private String firstName;
+    private String phone1;
+    private String phone2;
     private String email;
     private String password;
+    private String accountType;
+    private Date birthDate;
+    private String address;
+    private String city;
     private String socialSecurityType;
-    private Date birthdate;
-
-    public PatientFormData(String email, String password, String socialSecurityType, Date birthdate) {
-        this.email = email;
-        this.password = password;
-        this.socialSecurityType = socialSecurityType;
-        this.birthdate = birthdate;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getSocialSecurityType() {
-        return socialSecurityType;
-    }
-
-    public void setSocialSecurityType(String socialSecurityType) {
-        this.socialSecurityType = socialSecurityType;
-    }
-
-    public Date getBirthdate() {
-        return birthdate;
-    }
-
-    public void setBirthdate(Date birthdate) {
-        this.birthdate = birthdate;
-    }
 }
