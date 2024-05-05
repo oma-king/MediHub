@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Prescription Index</title>
+</head>
+<body>
+<h1>Prescription Index</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Prescription ID</th>
+        <th>Title</th>
+        <th>Prescription Date</th>
+        <th>Description</th>
+        <th>Item List</th>
+        <th>Consultation ID</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Iterate over the list of prescriptions and display prescription details -->
+    <tr th:each="prescription : ${prescriptions}">
+        <td th:text="${prescription.prescriptionId}"></td>
+        <td th:text="${prescription.title}"></td>
+        <td th:text="${prescription.prescriptionDate}"></td>
+        <td th:text="${prescription.description}"></td>
+        <td th:text="${prescription.itemList}"></td>
+        <td th:text="${prescription.consultation.consultationId}"></td>
+        <td>
+            <!-- Link to update prescription page -->
+            <a th:href="@{/updatePrescriptionForm?prescriptionId={id}(id=${prescription.prescriptionId})}">Update</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Appointment Form</title>
+</head>
+<body>
+<h2>Add Appointment Form</h2>
+<form id="addAppointmentForm">
+    <label for="appointmentDate">Appointment Date:</label>
+    <input type="date" id="appointmentDate" name="appointmentDate" required><br><br>
+
+    <label for="appointmentTime">Appointment Time:</label>
+    <input type="time" id="appointmentTime" name="appointmentTime" required><br><br>
+
+    <label for="description">Description:</label>
+    <input type="text" id="description" name="description" required><br><br>
+
+    <label for="symptoms">Symptoms:</label>
+    <input type="text" id="symptoms" name="symptoms" required><br><br>
+
+    <label for="priority">Priority:</label>
+    <input type="number" id="priority" name="priority" required><br><br>
+
+    <label for="patientId">Patient ID:</label>
+    <input type="number" id="patientId" name="patientId" required><br><br>
+
+    <label for="doctorId">Doctor ID:</label>
+    <input type="number" id="doctorId" name="doctorId" required><br><br>
+
+    <label for="nurseId">Nurse ID:</label>
+    <input type="number" id="nurseId" name="nurseId" required><br><br>
+
+    <label for="medicalFileId">Medical File ID:</label>
+    <input type="text" id="medicalFileId" name="medicalFileId" required><br><br>
+
+    <button type="submit">Add Appointment</button>
+</form>
+
+<!-- Script to handle form submission -->
+<script>
+    document.getElementById("addAppointmentForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent default form submission
+        // Collect form data
+        let formData = {
+            appointmentDate: document.getElementById("appointmentDate").value,
+            appointmentTime: document.getElementById("appointmentTime").value,
+            description: document.getElementById("description").value,
+            symptoms: document.getElementById("symptoms").value,
+            priority: parseInt(document.getElementById("priority").value),
+            patientId: parseInt(document.getElementById("patientId").value),
+            doctorId: parseInt(document.getElementById("doctorId").value),
+            nurseId: parseInt(document.getElementById("nurseId").value),
+            medicalFileId: document.getElementById("medicalFileId").value
+        };
+
+        // Send data to backend via AJAX
+        fetch('/addAppointment', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+            .then(response => response.text())
+            .then(message => {
+                alert(message); // Show success message
+                // Optionally redirect or perform other actions after adding appointment
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to add appointment');
+            });
+    });
+</script>
+</body>
+</html>

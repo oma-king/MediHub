@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointments</title>
+</head>
+<body>
+<h1>Appointments</h1>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Description</th>
+        <th>Symptoms</th>
+        <th>Priority</th>
+        <th>Medical File ID</th>
+        <th>Patient ID</th>
+        <th>Doctor ID</th>
+        <th>Nurse ID</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Iterate over the list of consultations and display consultation details -->
+    <tr th:each="appointment : ${appointments}">
+    <td th:text="${appointment.appointmentId}"></td>
+    <td th:text="${appointment.appointmentDate}"></td>
+    <td th:text="${appointment.appointmentTime}"></td>
+    <td th:text="${appointment.description}"></td>
+    <td th:text="${appointment.symptoms}"></td>
+    <td th:text="${appointment.priority}"></td>
+    <td th:text="${appointment.medicalFile.medicalFileId}"></td>
+    <td th:text="${appointment.patient.id}"></td>
+    <td th:text="${appointment.doctor.id}"></td>
+    <td th:text="${appointment.nurse.id}"></td>
+    <td>
+        <a th:href="@{/updateAppointmentForm?id={id}(id=${appointment.appointmentId})}">Update</a>
+    </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

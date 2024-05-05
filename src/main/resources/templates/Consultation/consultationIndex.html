@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Consultation Index</title>
+</head>
+<body>
+<h1>Consultation Index</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Consultation ID</th>
+        <th>Medical File ID</th>
+        <th>Doctor ID</th>
+        <th>Reason</th>
+        <th>Description</th>
+        <th>Consultation Date</th>
+        <th>Consultation Time</th>
+        <th>Price</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Iterate over the list of consultations and display consultation details -->
+    <tr th:each="consultation : ${consultations}">
+        <td th:text="${consultation.consultationId}"></td>
+        <td th:text="${consultation.medicalFile.medicalFileId}"></td>
+        <td th:text="${consultation.doctor.id}"></td>
+        <td th:text="${consultation.reason}"></td>
+        <td th:text="${consultation.description}"></td>
+        <td th:text="${consultation.consultationDate}"></td>
+        <td th:text="${consultation.consultationTime}"></td>
+        <td th:text="${consultation.price}"></td>
+        <td>
+            <a th:href="@{/updateConsultationForm?id={id}(id=${consultation.consultationId})}">Update</a>
+
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

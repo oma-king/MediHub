@@ -1,5 +1,7 @@
 package com.kingoma.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,25 +19,37 @@ import java.util.List;
 public class Consultation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int consultationId;
+    private Long consultationId;
 
     private String reason;
-    private Date consulationDate;
+    private String description;
+    private Date consultationDate;
     private String consultationTime;
     private double price;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "consultation", cascade = CascadeType.ALL)
     private List<Prescription> prescriptionList = new ArrayList<>();
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "patient_id")
-    private Patient patient;
-
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "medical_file_id")
     private MedicalFile medicalFile;
+
+    public Consultation(String reason, String description, Date consultationDate, String consultationTime, double price, Doctor doctor, MedicalFile medicalFile) {
+        this.reason = reason;
+        this.description = description;
+        this.consultationDate = consultationDate;
+        this.consultationTime = consultationTime;
+        this.price = price;
+        this.doctor = doctor;
+        this.medicalFile = medicalFile;
+    }
+
+
 }

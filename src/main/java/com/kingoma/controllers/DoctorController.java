@@ -75,7 +75,7 @@ public class DoctorController {
                 formData.getAccountType(),
                 formData.getSpeciality()
         );
-        // Save the Patient entity
+        // Save the Doctor entity
         doctorRepository.save(doctor);
 
         return "Doctor added successfully!";

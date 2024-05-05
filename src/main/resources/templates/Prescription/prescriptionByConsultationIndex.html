@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prescriptions by Consultation</title>
+</head>
+<body>
+<h1>Prescriptions by Consultation</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Prescription ID</th>
+        <th>Title</th>
+        <th>Prescription Date</th>
+        <th>Description</th>
+        <th>Item List</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody id="prescriptionTableBody">
+    <!-- Prescriptions will be dynamically loaded here -->
+    </tbody>
+</table>
+
+<script>
+    // Fetch prescriptions by consultation ID
+    document.addEventListener("DOMContentLoaded", function () {
+        let urlParams = new URLSearchParams(window.location.search);
+        let consultationId = urlParams.get("id");
+        fetch('/getPrescriptionByConsultationId/' + consultationId)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch prescriptions');
+                }
+                return response.json();
+            })
+            .then(prescriptions => {
+                // Build prescription table rows dynamically
+                let prescriptionTableBody = document.getElementById('prescriptionTableBody');
+                prescriptions.forEach(prescription => {
+                    let row = `<tr>
+                                    <td>${prescription.prescriptionId}</td>
+                                    <td>${prescription.title}</td>
+                                    <td>${prescription.prescriptionDate}</td>
+                                    <td>${prescription.description}</td>
+                                    <td>${prescription.itemList}</td>
+                                    <td><a href="/updatePrescriptionForm?id=${prescription.prescriptionId}">Update</a></td>
+                               </tr>`;
+                    prescriptionTableBody.innerHTML += row;
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to fetch prescriptions');
+            });
+    });
+</script>
+</body>
+</html>
