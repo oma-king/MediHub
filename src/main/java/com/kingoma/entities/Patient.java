@@ -1,6 +1,7 @@
 package com.kingoma.entities;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.kingoma.enums.AccountType;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -36,7 +37,7 @@ public class Patient extends User{
     @OneToOne(mappedBy = "patient", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private MedicalFile medicalFile;
 
-    public Patient(String idCard, String gender, String lastName, String firstName, String phone1, String phone2, String email, String username, String password, String accountType, Date birthDate, String address, String city, String socialSecurityType, MedicalFile medicalFile) {
+    public Patient(String idCard, String gender, String lastName, String firstName, String phone1, String phone2, String email, String username, String password, AccountType accountType, Date birthDate, String address, String city, String socialSecurityType, MedicalFile medicalFile) {
         super(idCard, gender, lastName, firstName, phone1, phone2, email, username, password, accountType);
         this.birthDate = birthDate;
         this.address = address;

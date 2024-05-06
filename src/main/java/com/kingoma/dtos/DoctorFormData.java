@@ -1,6 +1,7 @@
 package com.kingoma.dtos;
 
 import com.kingoma.entities.MedicalFile;
+import com.kingoma.enums.AccountType;
 import lombok.*;
 
 import java.util.Date;
@@ -19,6 +20,6 @@ public class DoctorFormData {
     private String phone2;
     private String email;
     private String password;
-    private String accountType;
+    private AccountType accountType;
     private String speciality;
 }

@@ -1,5 +1,6 @@
 package com.kingoma.dtos;
 
+import com.kingoma.enums.AccountType;
 import lombok.*;
 
 @Setter
@@ -16,6 +17,6 @@ public class NurseFormData {
     private String phone2;
     private String email;
     private String password;
-    private String accountType;
+    private AccountType accountType;
     private String shift;
 }

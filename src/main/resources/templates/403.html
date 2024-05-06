@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="template1"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>ERREUR </title>
+
+</head>
+<body>
+<div layout:fragment="content1">
+    <div class="container">
+
+        <h1 class="text-danger">You are not authorized to access this resource</h1>
+        <img src="../static/img/403.png"/>
+
+
+    </div>
+</div>
+</body>
+</html>

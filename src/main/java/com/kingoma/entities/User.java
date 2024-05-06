@@ -1,5 +1,6 @@
 package com.kingoma.entities;
 
+import com.kingoma.enums.AccountType;
 import jakarta.persistence.*;
 import lombok.*;
 import javax.validation.constraints.*;
@@ -37,9 +38,10 @@ public class User {
     private String username;
     private String password;
     @NotNull
-    private String accountType;
+    @Enumerated(EnumType.STRING)
+    private AccountType accountType;
 
-    public User(String idCard, String gender, String lastName, String firstName, String phone1, String phone2, String email, String username, String password, String accountType) {
+    public User(String idCard, String gender, String lastName, String firstName, String phone1, String phone2, String email, String username, String password, AccountType accountType) {
         this.idCard = idCard;
         this.gender = gender;
         this.lastName = lastName;
