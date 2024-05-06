@@ -4,6 +4,8 @@ import com.kingoma.enums.AccountType;
 import jakarta.persistence.*;
 import lombok.*;
 import javax.validation.constraints.*;
+
+
 @Entity
 @Table(name= "Users")
 @Setter
@@ -49,6 +51,14 @@ public class User {
         this.phone1 = phone1;
         this.phone2 = phone2;
         this.email = email;
+        this.username = username;
+        this.password = password;
+        this.accountType = accountType;
+    }
+
+    public User(String lastName, String firstName, String username, String password, AccountType accountType) {
+        this.lastName = lastName;
+        this.firstName = firstName;
         this.username = username;
         this.password = password;
         this.accountType = accountType;
