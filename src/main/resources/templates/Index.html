@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>MediHub - Accueil</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MediHub</title>
+    <link rel="shortcut icon" type="image/png" href="/images/logos/favicon.png" />
+    <link rel="stylesheet" type="text/css" href="/css/styles.min.css" />
 </head>
+
 <body>
+<!--
 <div>
     <h1>Bienvenue sur MediHub</h1>
     <p>Ceci est une application de gestion de cabinet médical.</p>
@@ -18,5 +23,171 @@
         <input type="submit" value="Sign Out"/>
     </form>
 </div>
+-->
+
+<div class="body-wrapper">
+    <!--  Header Start -->
+    <header class="app-header">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <ul class="navbar-nav">
+
+                <li class="nav-item">
+                    <a class="nav-link nav-icon-hover" href="/">
+                        <img src="/images/logos/medihub-logo-removebg-preview.png" width="50" height="50">
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navbar-text" href="/patients">
+                        Patients
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navbar-text" href="/doctors">
+                        Doctors
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navbar-text" href="/nurses">
+                        Nurses
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navbar-text" href="/consultations">
+                        Consultations
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navbar-text" href="/appointments">
+                        Appointments
+                    </a>
+                </li>
+            </ul>
+            <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+                <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+                     <li class="nav-item">
+                         <a th:href="@{/logout}" class="btn btn-outline-danger mx-3 mt-2 d-block">Logout</a>
+                        <!--<a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            <img src="/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+                            <div class="message-body">
+                                <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                                    <i class="ti ti-user fs-6"></i>
+                                    <p class="mb-0 fs-3">My Profile</p>
+                                </a>
+                                <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                                    <i class="ti ti-mail fs-6"></i>
+                                    <p class="mb-0 fs-3">My Account</p>
+                                </a>
+                                <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                                    <i class="ti ti-list-check fs-6"></i>
+                                    <p class="mb-0 fs-3">My Task</p>
+                                </a>
+                                <a th:href="@{/logout}" class="btn btn-outline-danger mx-3 mt-2 d-block">Logout</a>
+                            </div>
+                        </div>-->
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!--  Header End -->
+    <div class="container-fluid">
+        <div class="card w-100">
+            <div class="card-body p-4">
+                <h5 class="card-title fw-semibold mb-4">Patients List</h5>
+                <div class="table-responsive">
+                    <table class="table text-nowrap mb-0 align-middle">
+                        <thead class="text-dark fs-4">
+                        <tr>
+                            <th class="border-bottom-0">
+                                <h6 class="fw-semibold mb-0">ID</h6>
+                            </th>
+                            <th class="border-bottom-0">
+                                <h6 class="fw-semibold mb-0">Medical File ID</h6>
+                            </th>
+                            <th class="border-bottom-0">
+                                <h6 class="fw-semibold mb-0">Username</h6>
+                            </th>
+                            <th class="border-bottom-0">
+                                <h6 class="fw-semibold mb-0">Gender</h6>
+                            </th>
+                            <th class="border-bottom-0">
+                                <h6 class="fw-semibold mb-0">Name</h6>
+                            </th>
+                            <th class="border-bottom-0">
+                                <h6 class="fw-semibold mb-0">Email</h6>
+                            </th>
+                            <th class="border-bottom-0">
+                                <h6 class="fw-semibold mb-0">Phone 1</h6>
+                            </th>
+                            <th class="border-bottom-0">
+                                <h6 class="fw-semibold mb-0">Phone 2</h6>
+                            </th>
+                            <th class="border-bottom-0">
+                                <h6 class="fw-semibold mb-0">Birth Date</h6>
+                            </th>
+                            <th class="border-bottom-0">
+                                <h6 class="fw-semibold mb-0">Address</h6>
+                            </th>
+                            <th class="border-bottom-0">
+                                <h6 class="fw-semibold mb-0">City</h6>
+                            </th>
+                            <th class="border-bottom-0">
+                                <h6 class="fw-semibold mb-0">Social Security Type</h6>
+                            </th>
+                            <th class="border-bottom-0">
+                                <h6 class="fw-semibold mb-0">Action</h6>
+                            </th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="patient : ${patients}">
+                            <td th:text="${patient.id}" class="border-bottom-0"><h6 class="fw-semibold mb-0">1</h6></td>
+                            <td th:text="${patient.medicalFile.medicalFileId}" class="border-bottom-0"><h6 class="fw-semibold mb-0">1</h6></td>
+                            <td th:text="${patient.username}"></td>
+                            <td th:text="${patient.gender}"></td>
+                            <td th:text="${patient.firstName} + ' ' + ${patient.lastName}"></td>
+                            <td th:text="${patient.email}"></td>
+                            <td th:text="${patient.phone1}"></td>
+                            <td th:text="${patient.phone2}"></td>
+                            <td th:text="${patient.birthDate}"></td>
+                            <td th:text="${patient.address}"></td>
+                            <td th:text="${patient.city}"></td>
+                            <td th:text="${patient.socialSecurityType}"></td>
+                        </tr>
+                        <!--<tr>
+                            <td class="border-bottom-0"><h6 class="fw-semibold mb-0">1</h6></td>
+                            <td class="border-bottom-0">
+                                <h6 class="fw-semibold mb-1">Sunil Joshi</h6>
+                                <span class="fw-normal">Web Designer</span>
+                            </td>
+                            <td class="border-bottom-0">
+                                <p class="mb-0 fw-normal">Elite Admin</p>
+                            </td>
+                            <td class="border-bottom-0">
+                                <div class="d-flex align-items-center gap-2">
+                                    <span class="badge bg-primary rounded-3 fw-semibold">Low</span>
+                                </div>
+                            </td>
+                            <td class="border-bottom-0">
+                                <h6 class="fw-semibold mb-0 fs-4">$3.9</h6>
+                            </td>
+                        </tr>-->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="application/javascript" src="webjars/jquery/3.4.0/jquery.min.js"></script>
+<script type="application/javascript" src="webjars/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script type="application/javascript" src="/js/sidebarmenu.js"></script>
+<script type="application/javascript" src="/js/app.min.js"></script>
+<script type="application/javascript" src="/libs/simplebar/dist/simplebar.js"></script>
 </body>
+
 </html>
