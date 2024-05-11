@@ -2,6 +2,7 @@ package com.kingoma.controllers;
 
 import com.kingoma.dtos.DoctorFormData;
 import com.kingoma.entities.Doctor;
+import com.kingoma.repositories.ConsultationRepository;
 import com.kingoma.repositories.DoctorRepository;
 import com.kingoma.repositories.UserRepository;
 import org.springframework.http.HttpStatus;
@@ -18,11 +19,12 @@ public class DoctorController {
     private final DoctorRepository doctorRepository;
     private final UserRepository userRepository;
 
+    private final ConsultationRepository consultationRepository;
 
-
-    public DoctorController(DoctorRepository doctorRepository, UserRepository userRepository) {
+    public DoctorController(DoctorRepository doctorRepository, UserRepository userRepository, ConsultationRepository consultationRepository) {
         this.doctorRepository = doctorRepository;
         this.userRepository = userRepository;
+        this.consultationRepository = consultationRepository;
     }
 
     @GetMapping("/doctors")
@@ -115,7 +117,8 @@ public class DoctorController {
         if (optionalDoctor.isPresent()) {
             // Doctor exists, delete it
             Doctor doctor = optionalDoctor.get();
-
+            // Delete the corresponding user account
+            consultationRepository.deleteByDoctor_Id(doctor.getId());
             // Delete the Doctor record
             doctorRepository.delete(doctor);
 

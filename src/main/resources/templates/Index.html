@@ -46,21 +46,21 @@
                         Doctors
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link navbar-text" href="/nurses">
-                        Nurses
-                    </a>
-                </li>
+                <!--<li class="nav-item">
+                      <a class="nav-link navbar-text" href="/nurses">
+                          Nurses
+                      </a>
+                  </li>-->
                 <li class="nav-item">
                     <a class="nav-link navbar-text" href="/consultations">
                         Consultations
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link navbar-text" href="/appointments">
-                        Appointments
-                    </a>
-                </li>
+                <!-- <li class="nav-item">
+                     <a class="nav-link navbar-text" href="/appointments">
+                         Appointments
+                     </a>
+                 </li>-->
             </ul>
             <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
                 <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
@@ -93,95 +93,7 @@
         </nav>
     </header>
     <!--  Header End -->
-    <div class="container-fluid">
-        <div class="card w-100">
-            <div class="card-body p-4">
-                <h5 class="card-title fw-semibold mb-4">Patients List</h5>
-                <div class="table-responsive">
-                    <table class="table text-nowrap mb-0 align-middle">
-                        <thead class="text-dark fs-4">
-                        <tr>
-                            <th class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">ID</h6>
-                            </th>
-                            <th class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">Medical File ID</h6>
-                            </th>
-                            <th class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">Username</h6>
-                            </th>
-                            <th class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">Gender</h6>
-                            </th>
-                            <th class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">Name</h6>
-                            </th>
-                            <th class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">Email</h6>
-                            </th>
-                            <th class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">Phone 1</h6>
-                            </th>
-                            <th class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">Phone 2</h6>
-                            </th>
-                            <th class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">Birth Date</h6>
-                            </th>
-                            <th class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">Address</h6>
-                            </th>
-                            <th class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">City</h6>
-                            </th>
-                            <th class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">Social Security Type</h6>
-                            </th>
-                            <th class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0">Action</h6>
-                            </th>
 
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="patient : ${patients}">
-                            <td th:text="${patient.id}" class="border-bottom-0"><h6 class="fw-semibold mb-0">1</h6></td>
-                            <td th:text="${patient.medicalFile.medicalFileId}" class="border-bottom-0"><h6 class="fw-semibold mb-0">1</h6></td>
-                            <td th:text="${patient.username}"></td>
-                            <td th:text="${patient.gender}"></td>
-                            <td th:text="${patient.firstName} + ' ' + ${patient.lastName}"></td>
-                            <td th:text="${patient.email}"></td>
-                            <td th:text="${patient.phone1}"></td>
-                            <td th:text="${patient.phone2}"></td>
-                            <td th:text="${patient.birthDate}"></td>
-                            <td th:text="${patient.address}"></td>
-                            <td th:text="${patient.city}"></td>
-                            <td th:text="${patient.socialSecurityType}"></td>
-                        </tr>
-                        <!--<tr>
-                            <td class="border-bottom-0"><h6 class="fw-semibold mb-0">1</h6></td>
-                            <td class="border-bottom-0">
-                                <h6 class="fw-semibold mb-1">Sunil Joshi</h6>
-                                <span class="fw-normal">Web Designer</span>
-                            </td>
-                            <td class="border-bottom-0">
-                                <p class="mb-0 fw-normal">Elite Admin</p>
-                            </td>
-                            <td class="border-bottom-0">
-                                <div class="d-flex align-items-center gap-2">
-                                    <span class="badge bg-primary rounded-3 fw-semibold">Low</span>
-                                </div>
-                            </td>
-                            <td class="border-bottom-0">
-                                <h6 class="fw-semibold mb-0 fs-4">$3.9</h6>
-                            </td>
-                        </tr>-->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 <script type="application/javascript" src="webjars/jquery/3.4.0/jquery.min.js"></script>
 <script type="application/javascript" src="webjars/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>

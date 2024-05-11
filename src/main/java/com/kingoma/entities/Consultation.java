@@ -32,7 +32,7 @@ public class Consultation {
     private List<Prescription> prescriptionList = new ArrayList<>();
 
     @JsonBackReference
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
 

@@ -24,7 +24,7 @@ public class Prescription {
     private String itemList;
 
     @JsonBackReference
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "consultation_id")
     private Consultation consultation;
 
