@@ -18,7 +18,7 @@ public class PrescriptionFormController {
     public String showUpdatePrescriptionForm() {
         return "Prescription/updatePrescriptionForm"; // Corresponds to the file name in templates (updatePrescriptionForm.html)
     }
-    @GetMapping("/getPrescriptionByConsultationId")
+    @GetMapping("/getPrescriptionByConsultationIdForm")
     public String showGetPrescriptionByConsultationId() {
         return "Prescription/prescriptionByConsultationIndex"; // Corresponds to the file name in templates (updatePrescriptionForm.html)
     }
