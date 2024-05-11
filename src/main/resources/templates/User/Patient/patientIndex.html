@@ -62,7 +62,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>MediHub</title>
+    <title>Patients List</title>
     <link rel="shortcut icon" type="image/png" href="/images/logos/favicon.png" />
     <link rel="stylesheet" type="text/css" href="/css/styles.min.css" />
 </head>
@@ -152,10 +152,27 @@
         </nav>
     </header>
     <!--  Header End -->
-
+    <center>
+    <div class="col-sm-6 col-xl-1 d-flex justify-content-center align-items-center">
+        <div class="card overflow-hidden rounded-2">
+            <div class="position-relative">
+                <img src="/images/backgrounds/Patient.png" class="card-img-bottom rounded-5" alt="...">
+            </div>
+        </div>
+    </div>
+    </center>
         <div class="card w-100">
-            <div class="card-body p-4">
-                <h5 class="card-title fw-semibold mb-4">Patients List</h5>
+
+          <div class="card-body p-4">
+              <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
+                  <div class="mb-3 mb-sm-0">
+                      <h5 class="card-title fw-semibold mb-1">Patients List</h5>
+                  </div>
+                  <div>
+                      <a th:href="@{/patient/addPatientForm}" class="btn btn-primary mb-1 m-4 d-block">Add</a>
+                  </div>
+              </div>
+
                 <div class="table-responsive">
                     <table class="table text-nowrap mb-0 align-middle">
                         <thead class="text-dark fs-4">
@@ -217,8 +234,8 @@
                             <td th:text="${patient.city}"></td>
                             <td th:text="${patient.socialSecurityType}"></td>
                             <td>
-                                <a th:href="@{'/getPatientById/' + ${patient.id}}"  class="ti ti-eye"></a> |
-                                <a th:href="@{'/updatePatientForm?id=' + ${patient.id}}" class="ti ti-edit"></a>
+                                <!--<a th:href="@{'/patient/getPatientById/' + ${patient.id}}"  class="ti ti-eye"></a> |-->
+                                <a th:href="@{'/patient/updatePatientForm?id=' + ${patient.id}}" class="ti ti-edit m-3"></a>
                             </td>
                         </tr>
                         <!--<tr>

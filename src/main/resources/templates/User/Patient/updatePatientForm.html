@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>MediHub</title>
+    <title>Update Patient</title>
     <link rel="shortcut icon" type="image/png" href="/images/logos/favicon.png" />
     <link rel="stylesheet" type="text/css" href="/css/styles.min.css" />
 </head>
@@ -81,7 +81,7 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title fw-semibold mb-4"><div id="showPtientFirst"></div> </h5>
+                <h5 class="card-title fw-semibold mb-4"><div id="showPatientFirst"></div> </h5>
                 <div class="card">
                     <div class="card-body">
                         <form id="updatePatientForm">
@@ -91,7 +91,12 @@
                             </div>
                             <div class="mb-3">
                                 <label for="gender" class="form-label">Gender</label>
-                                <input type="text" class="form-control" id="gender" aria-describedby="genderHelp">
+                                <select class="form-select" id="gender" aria-describedby="genderHelp">
+                                    <option value="" selected>---</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Baby">Baby</option>
+                                </select>
                             </div>
                             <div class="mb-3">
                                 <label for="lastName" class="form-label">Last Name</label>
@@ -142,14 +147,24 @@
                             <label for="city" class="form-label">City</label>
                             <input type="text" class="form-control" id="city" aria-describedby="cityHelp">
                         </div>
-                            <div class="mb-3">
+                            <!--<div class="mb-3">
                                 <label for="socialSecurityType" class="form-label">Social Security Type</label>
                                 <input type="text" class="form-control" id="socialSecurityType" aria-describedby="socialSecurityTypeHelp">
+                            </div>-->
+                            <div class="mb-3">
+                                <label for="socialSecurityType" class="form-label">Social Security Type</label>
+                                <select class="form-select" id="socialSecurityType" aria-describedby="socialSecurityTypeHelp">
+                                    <option value="---" selected>---</option>
+                                    <option value="CNAM">CNAM</option>
+                                    <option value="INSURANCE">INSURANCE</option>
+                                </select>
+                                <div id="socialSecurityTypeHelp" class="form-text">Please select a social security type.</div>
                             </div>
                             <button type="submit" class="btn btn-secondary">Update Patient</button>
                             <!-- Delete button -->
                             <button id="deleteUserBtn" class="btn btn-danger">Delete Patient</button>
                         </form>
+
                     </div>
                 </div>
             </div>
@@ -217,16 +232,38 @@
 
 <!-- Script to handle delete user button click -->
 <script>
-    $(document).ready(function() {
+ /*   $(document).ready(function() {
         $('#deleteUserBtn').click(function() {
+*/
+            document.getElementById("deleteUserBtn").addEventListener("click", function(event) {
+                event.preventDefault(); // Prevent default form submission
             // Display confirmation dialog
             if (confirm("Are you sure you want to delete this user?")) {
                 let urlParams = new URLSearchParams(window.location.search);
                 let patientId = urlParams.get("id");
 
+                fetch('/patient/deletePatient/' + patientId, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify("")
+                })
+                    .then(response => response.text())
+                    .then(message => {
+                        alert(message); // Show success message
+                        // Optionally redirect or perform other actions after updating patient
+                        window.location.href = '/patients'; // Redirect to the homepage or any other appropriate page
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Failed to delete patient');
+                    });
+            }
+            });
                 // Send AJAX request to delete user
-                $.ajax({
-                    url: '/deletePatient/' + patientId,
+               /* $.ajax({
+                    url: '/patient/deletePatient/' + patientId,
                     type: 'DELETE',
                     success: function(response) {
                         alert(response); // Display success message
@@ -238,7 +275,7 @@
                 });
             }
         });
-    });
+    });*/
 </script>
 
 <!-- Script to fetch and fill patient data -->
@@ -250,7 +287,7 @@
         let patientId = urlParams.get("id");
 
         // Fetch patient data from the backend
-        fetch('/getPatientById/' + patientId)
+        fetch('/patient/getPatientById/' + patientId)
             .then(response => {
                 if (response.status === 404) {
                     throw new Error('Patient not found');
@@ -260,7 +297,7 @@
             return response.json();
         })
             .then(patient => {
-                document.getElementById("showPtientFirst").innerText = "Update Patient : " + patient.firstName + " " + patient.lastName;
+                document.getElementById("showPatientFirst").innerText = "Update Patient : " + patient.firstName + " " + patient.lastName;
                 // Fill form fields with patient data
                 document.getElementById("idCard").value = patient.idCard;
                 document.getElementById("gender").value = patient.gender;
@@ -313,7 +350,7 @@
         let patientId = urlParams.get("id");
 
         // Send data to backend via AJAX
-        fetch('/updatePatient/' + patientId, {
+        fetch('/patient/updatePatient/' + patientId, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

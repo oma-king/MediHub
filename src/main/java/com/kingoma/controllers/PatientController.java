@@ -35,7 +35,7 @@ public class PatientController {
         model.addAttribute("patients", patientRepository.findAll());
         return "User/Patient/patientIndex";
     }
-    @GetMapping("/getPatientById/{id}")
+    @GetMapping("/patient/getPatientById/{id}")
     public ResponseEntity<Patient> getPatientById(@PathVariable Long id) {
 
             Optional<Patient> optionalPatient = patientRepository.findById(id);
@@ -47,7 +47,7 @@ public class PatientController {
             }
 
     }
-    @PostMapping("/addPatient")
+    @PostMapping("/patient/addPatient")
     @ResponseBody
     public String addPatient(@RequestBody PatientFormData formData) {
         // Get the current year and month
@@ -100,7 +100,7 @@ public class PatientController {
 
         return "Patient added successfully!";
     }
-    @PutMapping("/updatePatient/{id}")
+    @PutMapping("/patient/updatePatient/{id}")
     @ResponseBody
     public String updatePatient(@PathVariable("id") Long id, @RequestBody PatientFormData formData) {
         // Retrieve the existing patient from the database
@@ -116,7 +116,7 @@ public class PatientController {
             patient.setPhone2(formData.getPhone2());
             patient.setEmail(formData.getEmail());
             patient.setPassword(formData.getPassword());
-            patient.setAccountType(formData.getAccountType());
+           /* patient.setAccountType(formData.getAccountType());*/
             patient.setBirthDate(formData.getBirthDate());
             patient.setAddress(formData.getAddress());
             patient.setCity(formData.getCity());
@@ -130,7 +130,7 @@ public class PatientController {
             return "Patient not found!";
         }
     }
-    @DeleteMapping("/deletePatient/{id}")
+    @DeleteMapping("/patient/deletePatient/{id}")
     @ResponseBody
     public String deletePatient(@PathVariable Long id) {
         // Check if the patient exists
