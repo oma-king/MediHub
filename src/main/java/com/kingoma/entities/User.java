@@ -3,7 +3,9 @@ package com.kingoma.entities;
 import com.kingoma.enums.AccountType;
 import jakarta.persistence.*;
 import lombok.*;
+
 import javax.validation.constraints.*;
+import java.util.Collection;
 
 
 @Entity
@@ -14,7 +16,7 @@ import javax.validation.constraints.*;
 @AllArgsConstructor
 @ToString
 @Inheritance(strategy = InheritanceType.JOINED)
-public class User {
+public class User{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -62,6 +64,12 @@ public class User {
         this.username = username;
         this.password = password;
         this.accountType = accountType;
+    }
+    public User(String username, String password, String lastName, String firstName) {
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.username = username;
+        this.password = password;
     }
 
 
